@@ -1,0 +1,9 @@
+train: images/train
+val: images/val
+test: images/test
+
+# Number of classes
+nc: 11
+
+# Class names
+names: ['helmet', 'gloves', 'vest', 'boots', 'goggles', 'none', 'Person', 'no_helmet', 'no_goggle', 'no_gloves', 'no_boots']
