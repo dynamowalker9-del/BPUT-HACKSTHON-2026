@@ -1,0 +1,24 @@
+# Configuration for PPE detection training and inference
+data_yaml: dataset/dataset.yaml # Path to dataset YAML
+epochs: 150                          # Number of training epochs
+imgsz: 640                           # Image size for training
+batch: 8                             # Batch size
+device: '0'                           # Use GPU 0 for training and detection
+conf_thresh: 0.15                    # Base confidence threshold for PPE classes
+person_conf_boost: 0.20              # Add 0.20 to the Person confidence threshold
+iou_thresh: 0.45                     # IoU threshold for NMS (used in validation)
+model_weights: yolo26n.pt            # Pretrained weights to start training from
+experiment_name: ppe_dataset_yolo26n # Name of the experiment
+project_dir: .                       # Save under Ultralytics' runs/detect directory
+# Detection-specific settings
+detect_weights: runs/detect/runs/detect/yolo26n_ppe-5/weights/best.pt  # Best checkpoint selected on dataset validation
+detect_specialist_weights: runs/detect/ppe_nohelmet_nogloves_finetune/weights/best.pt # Fine-tuned no_gloves specialist
+detect_specialist_class: no_gloves   # Use specialist predictions only for this class
+detect_source: dataset/images/test   # Dataset test split; override with --source for images/video/webcam
+detect_output: runs/detect/ppe_detection_test  # Annotated test images are saved here
+view_img: false                    # Batch dataset inference runs without opening image windows
+line_width: 3                       # Bounding-box outline, 2 px thicker than before
+webcam_conf: 0.15                    # Legacy setting; detect.py uses conf_thresh
+webcam_imgsz: 768                    # Image size used for model evaluation
+use_coco: true                      # Whether to load COCO person detector for webcam demo
+coco_conf: 0.15                       # Confidence for COCO person detector

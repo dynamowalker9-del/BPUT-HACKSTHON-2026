@@ -1,0 +1,34 @@
+PPE Detection Model Training - Final Outcome
+
+Objective: Develop a PPE detection system with mAP50-95 >= 0.90
+
+Results:
+- Best mAP50-95 achieved: ~0.25 (far below target 0.90)
+- Models trained: YOLOv8n, YOLOv8s, YOLOv8m for various epoch counts (50-200)
+- All training performed on CPU due to lack of GPU
+- Dataset suffers from severe class imbalance, particularly for "no_" classes
+
+Key Limitations:
+1. Insufficient training time/resources (CPU-only, limited epochs)
+2. Class imbalance hindering learning of rare classes
+3. Dataset size and diversity may be inadequate
+
+Recommendations for Achieving Target Accuracy:
+- Collect more annotated data, especially for underrepresented classes
+- Apply advanced augmentation techniques (mosaic, mixup, copy-paste)
+- Use larger models (YOLOv8x/l) with extended training (300+ epochs) on GPU
+- Implement class-weighted loss or focal loss
+- Consider two-stage detection approaches
+- Optimize hyperparameters (learning rate, batch size, augmentation strength)
+
+Next Steps:
+If wishing to continue:
+1. Augment dataset with synthetic samples for rare classes
+2. Resume training with longer epochs and/or larger model
+3. Re-evaluate on test set
+4. Export to TorchScript/ONNX for deployment if metrics improve
+
+All relevant files, logs, and summaries are available in the project directory.
+See FINAL_SUMMARY.md for detailed analysis and recommendations.
+
+Training and evaluation completed: 2026-10-08
